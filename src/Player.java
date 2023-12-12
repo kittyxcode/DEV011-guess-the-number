@@ -1,7 +1,7 @@
 abstract class Player {
     String name;//nombre jugadora
 
-    int[] guesses;//historias de intentos de adivinanza
+    int[] guesses;//intentos de adivinar nro
 
     public String getName() {
         return name;

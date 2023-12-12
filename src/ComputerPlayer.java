@@ -1,2 +1,6 @@
-public class ComputerPlayer {
+public class ComputerPlayer extends Player{
+    @Override
+    int makeGuess(){
+        return 0;
+    }
 }
