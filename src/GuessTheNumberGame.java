@@ -7,6 +7,8 @@ public class GuessTheNumberGame {
     private int targetNumber;
 
     public static void main(String[] args) {
+        System.out.println("--- Round 1: Player 1 ---");
+
         GuessTheNumberGame game = new GuessTheNumberGame();
         System.out.println(game.targetNumber);
 
