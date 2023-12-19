@@ -53,10 +53,9 @@ public class GuessTheNumberGame {
         else{
             System.out.println("--- Round 2: Computer Player --- ");
             System.out.println("Computer Player Enter you guess: ");
-            Scanner scanner = new Scanner(System.in);
-            int number = scanner.nextInt();
-            player.setGuesses(number);
-            return player.makeGuess() != getTargetNumber();
+            int number = player.makeGuess();
+            System.out.println(number);
+            return number != getTargetNumber();
         }
     }
 
@@ -69,6 +68,22 @@ public class GuessTheNumberGame {
         System.out.println("--- Ingresa tu nombre Player 1:");
         Scanner scanner = new Scanner(System.in);
         playerOne.setName(scanner.next());
+        boolean validation = game.checkGuess(playerOne);
+        game.setShift(2);
+        System.out.println(game.getShift());
+        while(validation){
+            if(game.getShift()%2==0){
+                validation = game.checkGuess(computerPlayer);
+                game.setShift(game.getShift()+1);
+            }
+            else {
+               validation = game.checkGuess(playerOne);
+                game.setShift(game.getShift()+1);
+            }
+        }
+
+
+
         game.checkGuess(playerOne);
 
 
