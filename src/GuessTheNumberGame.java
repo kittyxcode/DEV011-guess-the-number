@@ -48,6 +48,12 @@ public class GuessTheNumberGame {
             Scanner scanner = new Scanner(System.in);
             int number = scanner.nextInt();
             player.setGuesses(number);
+            if(player.makeGuess() > getTargetNumber()){
+                System.out.println("too high!");
+            }
+            else{
+                System.out.println("too low!");
+            }
             return player.makeGuess() != getTargetNumber();
         }
         else{
@@ -55,11 +61,15 @@ public class GuessTheNumberGame {
             System.out.println("Computer Player Enter you guess: ");
             int number = player.makeGuess();
             System.out.println(number);
+            if(player.makeGuess() > getTargetNumber()){
+                System.out.println("too high!");
+            }
+            else{
+                System.out.println("too low!");
+            }
             return number != getTargetNumber();
         }
     }
-
-    
 
     public static void main(String[] args) {
         GuessTheNumberGame game = new GuessTheNumberGame();
@@ -75,12 +85,42 @@ public class GuessTheNumberGame {
         while(validation){
             if(game.getShift()%2==0){
                 validation = game.checkGuess(computerPlayer);
-                game.setShift(game.getShift()+1);
+                if(!validation){
+                    System.out.println("Congratulation "+ computerPlayer.getName() +" You guessed the number.");
+                    System.out.print("Attempts: [");
+                    for (int i = 0; i < computerPlayer.getGuesses().length; i++) {
+                        System.out.print(computerPlayer.getGuesses()[i]);
+                        if (i < computerPlayer.getGuesses().length - 1) {
+                            System.out.print(", ");
+                        }
+                    }
+                    System.out.println("]");
+                    System.out.println("Total Attempts: " + computerPlayer.getGuesses().length);
+                }
+                else {
+                    game.setShift(game.getShift()+1);
+                }
+
             }
             else {
                validation = game.checkGuess(playerOne);
-                game.setShift(game.getShift()+1);
+                if(!validation){
+                    System.out.println("Congratulation "+ playerOne.getName() +" You guessed the number.");
+                    System.out.print("Attempts: [");
+                    for (int i = 0; i < playerOne.getGuesses().length; i++) {
+                        System.out.print(playerOne.getGuesses()[i]);
+                        if (i < playerOne.getGuesses().length - 1) {
+                            System.out.print(", ");
+                        }
+                    }
+                    System.out.println("]");
+                    System.out.println("Total Attempts: " + playerOne.getGuesses().length);
+                }
+                else {
+                    game.setShift(game.getShift()+1);
+                }
             }
         }
+
     }
 }
