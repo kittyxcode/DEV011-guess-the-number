@@ -2,6 +2,6 @@ public class HumanPlayer extends Player {
 
     @Override
     int makeGuess() {
-        return 0;
+        return getGuesses()[guesses.length-1];
     }
 }
