@@ -59,6 +59,8 @@ public class GuessTheNumberGame {
         }
     }
 
+    
+
     public static void main(String[] args) {
         GuessTheNumberGame game = new GuessTheNumberGame();
         HumanPlayer playerOne;
@@ -68,9 +70,8 @@ public class GuessTheNumberGame {
         System.out.println("--- Ingresa tu nombre Player 1:");
         Scanner scanner = new Scanner(System.in);
         playerOne.setName(scanner.next());
-        boolean validation = game.checkGuess(playerOne);
-        game.setShift(2);
-        System.out.println(game.getShift());
+        boolean validation = true;
+
         while(validation){
             if(game.getShift()%2==0){
                 validation = game.checkGuess(computerPlayer);
@@ -81,17 +82,5 @@ public class GuessTheNumberGame {
                 game.setShift(game.getShift()+1);
             }
         }
-
-
-
-        game.checkGuess(playerOne);
-
-
-
-
-
     }
-
-
-
 }
