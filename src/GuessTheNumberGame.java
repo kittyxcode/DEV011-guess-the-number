@@ -1,9 +1,7 @@
-import java.io.Console;
 import java.util.Random;
 import java.util.Scanner;
 
 public class GuessTheNumberGame {
-
     private Random random;
     private int targetNumber;
     private int shift;
@@ -31,9 +29,6 @@ public class GuessTheNumberGame {
     public void setShift(int shift) {
         this.shift = shift;
     }
-
-
-
 
     public GuessTheNumberGame(){
         setRandom(new Random());
