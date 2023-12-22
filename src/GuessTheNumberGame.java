@@ -5,6 +5,7 @@ public class GuessTheNumberGame {
     private Random random;
     private int targetNumber;
     private int shift;
+    private static final int MAX_NUMBER = 100;
 
     public Random getRandom() {
         return random;
@@ -32,7 +33,7 @@ public class GuessTheNumberGame {
 
     public GuessTheNumberGame(){
         setRandom(new Random());
-        setTargetNumber(random.nextInt(100));
+        setTargetNumber(random.nextInt(MAX_NUMBER));
         setShift(1);
     }
 
