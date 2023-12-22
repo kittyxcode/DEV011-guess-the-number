@@ -44,12 +44,7 @@ public class GuessTheNumberGame {
             Scanner scanner = new Scanner(System.in);
             int number = scanner.nextInt();
             player.setGuesses(number);
-            if(player.makeGuess() > getTargetNumber()){
-                System.out.println("too high!");
-            }
-            else{
-                System.out.println("too low!");
-            }
+            printClue(player);
             return player.makeGuess() != getTargetNumber();
         }
         else{
@@ -57,13 +52,17 @@ public class GuessTheNumberGame {
             System.out.println("Computer Player Enter you guess: ");
             int number = player.makeGuess();
             System.out.println(number);
-            if(player.makeGuess() > getTargetNumber()){
-                System.out.println("too high!");
-            }
-            else{
-                System.out.println("too low!");
-            }
+            printClue(player);
             return number != getTargetNumber();
+        }
+    }
+
+    private void printClue(Player player){
+        if(player.makeGuess() > getTargetNumber()){
+            System.out.println("too high!");
+        }
+        else{
+            System.out.println("too low!");
         }
     }
 
