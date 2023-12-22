@@ -62,7 +62,9 @@ public class GuessTheNumberGame {
             System.out.println("too high!");
         }
         else{
+            if(player.makeGuess() < getTargetNumber()){
             System.out.println("too low!");
+            }
         }
     }
 
