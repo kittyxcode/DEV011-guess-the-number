@@ -39,7 +39,7 @@ public class GuessTheNumberGame {
 
     public boolean checkGuess(Player player){
         if(player instanceof HumanPlayer){
-            System.out.println("--- Round 1: Player 1 --- " + player.getName());
+            System.out.println("--- Round 1: " + player.getName());
             System.out.println("Player 1 Enter you guess: ");
             Scanner scanner = new Scanner(System.in);
             int number = scanner.nextInt();
@@ -66,15 +66,19 @@ public class GuessTheNumberGame {
         }
     }
 
+    private void printQuestionName(Player playerOne){
+        System.out.println("--- Ingresa tu nombre Player 1:");
+        Scanner scanner = new Scanner(System.in);
+        playerOne.setName(scanner.next());
+    }
+
     public static void main(String[] args) {
         GuessTheNumberGame game = new GuessTheNumberGame();
         HumanPlayer playerOne;
         playerOne = new HumanPlayer();
         ComputerPlayer computerPlayer = new ComputerPlayer();
         System.out.println(game.getTargetNumber());
-        System.out.println("--- Ingresa tu nombre Player 1:");
-        Scanner scanner = new Scanner(System.in);
-        playerOne.setName(scanner.next());
+        game.printQuestionName(playerOne);
         boolean validation = true;
 
         while(validation){
