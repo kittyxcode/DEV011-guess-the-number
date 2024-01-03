@@ -5,6 +5,7 @@ public class GuessTheNumberGame {
     private Random random;
     private int targetNumber;
     private int shift;
+    private static final int MAX_NUMBER = 100;
 
     public Random getRandom() {
         return random;
@@ -32,23 +33,18 @@ public class GuessTheNumberGame {
 
     public GuessTheNumberGame(){
         setRandom(new Random());
-        setTargetNumber(random.nextInt(100));
+        setTargetNumber(random.nextInt(MAX_NUMBER));
         setShift(1);
     }
 
     public boolean checkGuess(Player player){
         if(player instanceof HumanPlayer){
-            System.out.println("--- Round 1: Player 1 --- " + player.getName());
+            System.out.println("--- Round 1: " + player.getName());
             System.out.println("Player 1 Enter you guess: ");
             Scanner scanner = new Scanner(System.in);
             int number = scanner.nextInt();
             player.setGuesses(number);
-            if(player.makeGuess() > getTargetNumber()){
-                System.out.println("too high!");
-            }
-            else{
-                System.out.println("too low!");
-            }
+            printClue(player);
             return player.makeGuess() != getTargetNumber();
         }
         else{
@@ -56,14 +52,26 @@ public class GuessTheNumberGame {
             System.out.println("Computer Player Enter you guess: ");
             int number = player.makeGuess();
             System.out.println(number);
-            if(player.makeGuess() > getTargetNumber()){
-                System.out.println("too high!");
-            }
-            else{
-                System.out.println("too low!");
-            }
+            printClue(player);
             return number != getTargetNumber();
         }
+    }
+
+    private void printClue(Player player){
+        if(player.makeGuess() > getTargetNumber()){
+            System.out.println("too high!");
+        }
+        else{
+            if(player.makeGuess() < getTargetNumber()){
+            System.out.println("too low!");
+            }
+        }
+    }
+
+    private void printQuestionName(Player playerOne){
+        System.out.println("--- Ingresa tu nombre Player 1:");
+        Scanner scanner = new Scanner(System.in);
+        playerOne.setName(scanner.next());
     }
 
     public static void main(String[] args) {
@@ -72,9 +80,7 @@ public class GuessTheNumberGame {
         playerOne = new HumanPlayer();
         ComputerPlayer computerPlayer = new ComputerPlayer();
         System.out.println(game.getTargetNumber());
-        System.out.println("--- Ingresa tu nombre Player 1:");
-        Scanner scanner = new Scanner(System.in);
-        playerOne.setName(scanner.next());
+        game.printQuestionName(playerOne);
         boolean validation = true;
 
         while(validation){
